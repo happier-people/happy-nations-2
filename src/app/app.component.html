@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+<div class="menu">
+    <div class="inner-container">
+        <div class="menu-entry">
+            <a [routerLink]="['map']">Happiness map</a>
+        </div>
+        <div class="menu-entry">
+            <a [routerLink]="['how-it-was-calculated']">But how?</a>
+        </div>
+        <div class="menu-entry">
+            <a [routerLink]="['rating']">Rating</a>
+        </div>
+        <div class="menu-entry">
+            <a [routerLink]="['our-goals']">Goals</a>
+        </div>
+        <div class="menu-entry">
+            <a [routerLink]="['authors']">Authors</a>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
