@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MapService} from './map.service';
+import {Http} from "@angular/http";
+
+import 'rxjs/add/operator/toPromise'; // tmp
 
 declare let $;
 declare let jvm;
@@ -19,10 +22,11 @@ export class MapComponent implements OnInit {
     ];
 
     constructor (
-        private mapService: MapService
+        private mapService: MapService,
+        private http: Http // tmp
     ) { }
 
-    ngOnInit () {
+    async ngOnInit () {
         $.fn.vectorMap('addMap', 'world_mill', {
             insets: [{
                 width: 900,
@@ -62,6 +66,9 @@ export class MapComponent implements OnInit {
         });
         this.map.series.regions[0].setValues(this.getRandomColors());
 
+        // tmp
+        let countries = await this.http.get('http://ec2-35-176-1-245.eu-west-2.compute.amazonaws.com/api/info/countries').toPromise();
+        console.log(countries.json());
     }
 
     private getRandomColors () : any {
